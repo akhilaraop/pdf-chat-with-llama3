@@ -16,7 +16,8 @@ load_dotenv()
 groq_api_key = os.getenv('GROQ_API_KEY')
 
 # Streamlit app title
-st.title('ChatGroq with Llama3')
+st.title('ChatGroq - Llama3 8B Chatbot')
+st.subheader('Chat with your documents using Llama3 8B model')
 
 # Initialize the ChatGroq LLM
 llm = ChatGroq(groq_api_key=groq_api_key, model_name="Llama3-8b-8192")
