@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 from langchain_groq import ChatGroq
-from langchain_ollama import OllamaEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
@@ -36,7 +36,7 @@ prompt = ChatPromptTemplate.from_template(
 # Function to create vector embeddings
 def vector_embeddings():
     if "vectors" not in st.session_state:
-        st.session_state.embeddings = OllamaEmbeddings(model="llama3.1")
+        st.session_state.embeddings = st.session_state.embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
         st.session_state.loader = PyPDFDirectoryLoader("./us_census")  # Data ingestion
         st.session_state.docs = st.session_state.loader.load()  # Document loading
         st.session_state.text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)  # Chunk creation
